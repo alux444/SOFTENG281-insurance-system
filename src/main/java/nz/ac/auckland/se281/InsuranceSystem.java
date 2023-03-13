@@ -17,12 +17,12 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profiles, "s", ".");
     } else if (profileNum == 1) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profiles, "", ":");
-      System.out.println(userNames.size() + ". " + userNames.get(0) + ", " + ages.get(0));
+      System.out.println(userNames.size() + ": " + userNames.get(0) + ", " + ages.get(0));
     } else {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profiles, "s", ":");
       for (int i = 0; i < userNames.size(); i++) {
         int rank = i + 1;
-        System.out.println(rank + ". " + userNames.get(i) + ", " + ages.get(i));
+        System.out.println(rank + ": " + userNames.get(i) + ", " + ages.get(i));
       }
     }
   }
@@ -43,7 +43,7 @@ public class InsuranceSystem {
     }
     // after ensuring username is atleast 3 characters and age is a positive integer...
     if (profileNum > 0) {
-    // checking for duplicate usernames. If username is a dupe, return error message.
+      // checking for duplicate usernames. If username is a dupe, return error message.
       for (int i = 0; i < userNames.size(); i++) {
         if (fixedName.equals(userNames.get(i))) {
           MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(fixedName);
