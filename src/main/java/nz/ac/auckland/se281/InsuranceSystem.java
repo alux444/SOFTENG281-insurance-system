@@ -5,6 +5,7 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
+  // initialising values for number of profiles, and arraylists for saved usernames and ages.
   private static int profileNum = 0;
   private static ArrayList<String> userNames = new ArrayList<String>();
   private static ArrayList<String> ages = new ArrayList<String>();
@@ -12,6 +13,9 @@ public class InsuranceSystem {
   public InsuranceSystem() {}
 
   public void printDatabase() {
+    // prints database based on different scenarios : 0 profiles, 1 profile or 2+ profiles.
+    // in the case of 2+ profiles, uses a for loop going through arraylist of usernames. (assumed
+    // not needed for single profile, as only 1 profile.)
     String profiles = Integer.toString(profileNum);
     if (profileNum == 0) {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(profiles, "s", ".");

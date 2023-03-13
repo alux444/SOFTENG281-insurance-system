@@ -374,6 +374,12 @@ public class MainTest {
       runCommands(PRINT_DB);
       assertContains("");
     }
+
+    @Test
+    public void dupename() throws Exception {
+      runCommands(CREATE_PROFILE, "jorDan", "21", CREATE_PROFILE, "jordan", "25", PRINT_DB);
+      assertContains("Usernames must be unique. No profile was created for 'Jordan'.");
+    }
   }
 
   private static final Object[] CREATE_SOME_CLIENTS =
