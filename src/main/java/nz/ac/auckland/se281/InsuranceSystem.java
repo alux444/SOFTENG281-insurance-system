@@ -46,8 +46,9 @@ public class InsuranceSystem {
       return;
     }
 
-    if (Profile.checkDuplicate(fixedName)) {
+    if (Profile.checkDuplicate(fixedName) == false) {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(fixedName);
+      return;
     }
 
     Profile confirmedProfile = new Profile(fixedName, age);

@@ -377,8 +377,16 @@ public class MainTest {
 
     @Test
     public void dupename() throws Exception {
-      runCommands(CREATE_PROFILE, "jorDan", "-20", CREATE_PROFILE, "jordan", "25", PRINT_DB);
+      runCommands(CREATE_PROFILE, "jorDan", "20", CREATE_PROFILE, "jordan", "25", PRINT_DB);
       assertContains("Usernames must be unique. No profile was created for 'Jordan'.");
+    }
+
+    @Test
+    public void wrongAge() throws Exception {
+      runCommands(CREATE_PROFILE, "jorDan", "0", CREATE_PROFILE, "jordan", "-1", PRINT_DB);
+      assertContains(
+          "'%s' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for %s.");
     }
   }
 

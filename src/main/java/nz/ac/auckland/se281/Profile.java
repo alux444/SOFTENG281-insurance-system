@@ -53,8 +53,8 @@ public class Profile {
           return false;
         }
       }
-      return true;
     }
+    return true;
   }
 
   // get profiles number
