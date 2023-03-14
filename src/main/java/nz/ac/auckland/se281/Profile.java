@@ -34,7 +34,14 @@ public class Profile {
   }
 
   // checks age (positive number) returns a boolean true if it meets requirements
+  // also checks for if there is a character "." indicating a decimal.
   public static boolean checkAge(String age) {
+    for (int i = 0; i < age.length() - 1; i++) {
+      char currentChar = age.charAt(i);
+      if (currentChar == '.') {
+        return false;
+      }
+    }
     if (Integer.valueOf(age) < 0) {
       return false;
     } else {

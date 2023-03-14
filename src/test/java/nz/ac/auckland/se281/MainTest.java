@@ -383,10 +383,18 @@ public class MainTest {
 
     @Test
     public void wrongAge() throws Exception {
-      runCommands(CREATE_PROFILE, "jorDan", "0", CREATE_PROFILE, "jordan", "-1", PRINT_DB);
+      runCommands(CREATE_PROFILE, "jorDan", "0", CREATE_PROFILE, "jaKE", "-1", PRINT_DB);
       assertContains(
-          "'%s' is an invalid age, please provide a positive whole number only. No profile was"
-              + " created for %s.");
+          "'-1' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Jake.");
+    }
+
+    @Test
+    public void decimalAge() throws Exception {
+      runCommands(CREATE_PROFILE, "jorDan", "0.5", CREATE_PROFILE, "rat", "6.7", PRINT_DB);
+      assertContains(
+          "'0.5' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for 'Jordan");
     }
   }
 
