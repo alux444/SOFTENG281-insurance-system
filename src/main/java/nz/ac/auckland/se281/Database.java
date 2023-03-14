@@ -15,25 +15,25 @@ public class Database {
   }
 
   // adds profile to the database, returning true if a profile is added
-  public boolean addProfile(Profile newProfile) {
+  public void addProfile(Profile newProfile) {
     // checks username length (atleast 3 characters) sends error message if fail.
     if ((newProfile.getUsername()).length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUsername());
-      return false;
+      return;
     }
     for (int i = 0; i < newProfile.getAge().length(); i++) {
       // for loop checking for '.' in the case of a period in the age. sends error message if fails.
       char currentChar = newProfile.getAge().charAt(i);
       if (currentChar == '.') {
         MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUsername());
-        return false;
+        return;
       }
     }
     if (Integer.valueOf(newProfile.getAge()) < 0) {
       // checking the integer value of age - ensuring it is positive. sends error message if
       // fails.
       MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUsername());
-      return false;
+      return;
     }
     if (profiles > 0) {
       // uses a for loop to go through profiles in an index, based on existing created profile
@@ -43,14 +43,14 @@ public class Database {
         String nameToCompare = profileToCompare.getUsername();
         if (newProfile.getUsername().equals(nameToCompare)) {
           MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(newProfile.getUsername());
-          return false;
+          return;
         }
       }
     }
     profileDatabase.add(newProfile);
     profiles++;
     MessageCli.PROFILE_CREATED.printMessage(newProfile.getUsername(), newProfile.getAge());
-    return true;
+    return;
   }
 
   // gets a profiles information
