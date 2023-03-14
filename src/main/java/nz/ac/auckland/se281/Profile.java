@@ -26,10 +26,10 @@ public class Profile {
 
   // checks username length (atleast 3 characters) returns a boolean true if it meets requirements
   public static boolean checkUsername(String username) {
-    if (username.length() < 2) {
-      return false;
-    } else {
+    if (username.length() > 2) {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -38,6 +38,21 @@ public class Profile {
     if (Integer.valueOf(age) < 0) {
       return false;
     } else {
+      return true;
+    }
+  }
+
+  public static boolean checkDuplicate(String username) {
+    if (profiles == 0) {
+      return true;
+    } else {
+      for (int i = 0; i < profiles; i++) {
+        Profile profileToCompare = Database.getProfile(i);
+        String nameToCompare = profileToCompare.getUsername();
+        if (username.equals(nameToCompare)) {
+          return false;
+        }
+      }
       return true;
     }
   }

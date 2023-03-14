@@ -377,7 +377,7 @@ public class MainTest {
 
     @Test
     public void dupename() throws Exception {
-      runCommands(CREATE_PROFILE, "jorDan", "21", CREATE_PROFILE, "jordan", "25", PRINT_DB);
+      runCommands(CREATE_PROFILE, "jorDan", "-20", CREATE_PROFILE, "jordan", "25", PRINT_DB);
       assertContains("Usernames must be unique. No profile was created for 'Jordan'.");
     }
   }

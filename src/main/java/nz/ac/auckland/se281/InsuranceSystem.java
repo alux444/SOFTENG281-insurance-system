@@ -36,7 +36,7 @@ public class InsuranceSystem {
     String fixedName =
         upperUsername.charAt(0) + userName.substring(1, userName.length()).toLowerCase();
 
-    if (Profile.checkUsername(fixedName) == false) {
+    if (Profile.checkUsername(userName) == false) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(fixedName);
       return;
     }
@@ -44,6 +44,10 @@ public class InsuranceSystem {
     if (Profile.checkAge(age) == false) {
       MessageCli.INVALID_AGE.printMessage(age, fixedName);
       return;
+    }
+
+    if (Profile.checkDuplicate(fixedName)) {
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(fixedName);
     }
 
     Profile confirmedProfile = new Profile(fixedName, age);
