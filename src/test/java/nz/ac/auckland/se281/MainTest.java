@@ -391,10 +391,10 @@ public class MainTest {
 
     @Test
     public void decimalAge() throws Exception {
-      runCommands(CREATE_PROFILE, "jorDan", "0.5", CREATE_PROFILE, "rat", "6.7", PRINT_DB);
+      runCommands(CREATE_PROFILE, "jorDan", "0.5", CREATE_PROFILE, "rat", "67.", PRINT_DB);
       assertContains(
           "'0.5' is an invalid age, please provide a positive whole number only. No profile was"
-              + " created for 'Jordan");
+              + " created for Jordan.");
     }
   }
 

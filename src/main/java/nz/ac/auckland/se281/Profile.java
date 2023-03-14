@@ -9,6 +9,7 @@ public class Profile {
   // static fields
   private static int profiles = 0;
 
+  // profile constructor
   public Profile(String inputName, String inputAge) {
     this.username = inputName;
     this.age = inputAge;
@@ -36,7 +37,7 @@ public class Profile {
   // checks age (positive number) returns a boolean true if it meets requirements
   // also checks for if there is a character "." indicating a decimal.
   public static boolean checkAge(String age) {
-    for (int i = 0; i < age.length() - 1; i++) {
+    for (int i = 0; i < age.length(); i++) {
       char currentChar = age.charAt(i);
       if (currentChar == '.') {
         return false;
@@ -49,6 +50,8 @@ public class Profile {
     }
   }
 
+  // checks for duplicate names by going through saved database names.
+  // if there are no existing profiles, will simply return true, as there can be no duplicates.
   public static boolean checkDuplicate(String username) {
     if (profiles == 0) {
       return true;
