@@ -22,9 +22,19 @@ public class Database {
       return;
     }
     for (int i = 0; i < newProfile.getAge().length(); i++) {
-      // for loop checking for '.' in the case of a period in the age. sends error message if fails.
+      // for loop checking for 0 to 9s ONLY in age. otherwise, any letters, or characters all
+      // removed (including period for decimals)
       char currentChar = newProfile.getAge().charAt(i);
-      if (currentChar == '.') {
+      if (currentChar != '0'
+          && currentChar != '1'
+          && currentChar != '2'
+          && currentChar != '3'
+          && currentChar != '4'
+          && currentChar != '5'
+          && currentChar != '6'
+          && currentChar != '7'
+          && currentChar != '8'
+          && currentChar != '9') {
         MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUsername());
         return;
       }
