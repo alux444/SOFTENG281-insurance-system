@@ -7,9 +7,6 @@ public class Database {
   // arraylist for storing profiles
   private ArrayList<Profile> profileDatabase = new ArrayList<Profile>();
 
-  // static private profiles
-  private int profiles = 0;
-
   public Database() {
     profileDatabase = new ArrayList<Profile>();
   }
@@ -45,10 +42,10 @@ public class Database {
       MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUsername());
       return;
     }
-    if (profiles > 0) {
+    if (profileDatabase.size() > 0) {
       // uses a for loop to go through profiles in an index, based on existing created profile
       // number. checking for duplicate usernames.
-      for (int j = 0; j < profiles; j++) {
+      for (int j = 0; j < profileDatabase.size(); j++) {
         Profile profileToCompare = profileDatabase.get(j);
         String nameToCompare = profileToCompare.getUsername();
         if (newProfile.getUsername().equals(nameToCompare)) {
@@ -58,7 +55,6 @@ public class Database {
       }
     }
     profileDatabase.add(newProfile);
-    profiles++;
     MessageCli.PROFILE_CREATED.printMessage(newProfile.getUsername(), newProfile.getAge());
     return;
   }
@@ -77,6 +73,6 @@ public class Database {
   }
 
   public int getProfilesNumber() {
-    return profiles;
+    return profileDatabase.size();
   }
 }
