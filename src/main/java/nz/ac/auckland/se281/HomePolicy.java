@@ -6,8 +6,8 @@ public class HomePolicy extends Policy {
   private String address;
   private boolean rental;
 
-  public HomePolicy(int sumInsured, String address, boolean rental) {
-    super(sumInsured);
+  public HomePolicy(Profile policyOwner, int sumInsured, String address, boolean rental) {
+    super(sumInsured, Policy.PolicyType.POLICY_HOME, policyOwner);
     this.address = address;
     this.rental = rental;
   }
