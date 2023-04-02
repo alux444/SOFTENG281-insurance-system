@@ -53,11 +53,16 @@ public class InsuranceSystem {
   }
 
   public void unloadProfile() {
-    // TODO: Complete this method.
+    profileInfos.unloadProfile();
   }
 
   public void deleteProfile(String userName) {
-    // TODO: Complete this method.
+    // convert username to desired punctuation
+    String upperUsername = userName.toUpperCase();
+    String fixedName =
+        upperUsername.charAt(0) + userName.substring(1, userName.length()).toLowerCase();
+
+    profileInfos.deleteProfile(fixedName);
   }
 
   public void createPolicy(PolicyType type, String[] options) {

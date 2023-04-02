@@ -17,6 +17,11 @@ public class Database {
 
   // adds profile to the database, returning true if a profile is added
   public void addProfile(Profile newProfile) {
+    if (loadedStatus == true) {
+      // checks if a profile is loaded, if so, sends error message.
+      MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(loadedProfile.getUsername());
+      return;
+    }
     // checks username length (atleast 3 characters) sends error message if fail.
     if ((newProfile.getUsername()).length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUsername());
@@ -73,6 +78,7 @@ public class Database {
     String username = inputProfile.getUsername();
     String age = inputProfile.getAge();
     String indexString = Integer.toString(index + 1);
+    // if the current profile is the loaded profile, print *** before the profile information.
     if (inputProfile == loadedProfile) {
       System.out.print("***");
     }
@@ -97,6 +103,38 @@ public class Database {
     }
     // if no such profile can be found, send error message.
     MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(user);
+    return;
+  }
+
+  public void unloadProfile() {
+    // if no profile is loaded, send error message.
+    if (loadedStatus == false) {
+      MessageCli.NO_PROFILE_LOADED.printMessage();
+      return;
+    }
+    // if a profile is loaded, send message and set loaded status to false.
+    MessageCli.PROFILE_UNLOADED.printMessage(loadedProfile.getUsername());
+    this.loadedStatus = false;
+    this.loadedProfile = null;
+    return;
+  }
+
+  public void deleteProfile(String username) {
+    // searches for profile with matching username
+    for (Profile profile : profileDatabase) {
+      if (profile.getUsername().equals(username)) {
+        // when profile is found, ensure profile isnt loaded profile
+        if (profile == loadedProfile) {
+          MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(username);
+          return;
+        }
+        profileDatabase.remove(profile);
+        MessageCli.PROFILE_DELETED.printMessage(username);
+        return;
+      }
+    }
+    // if no profile is found, send error message.
+    MessageCli.NO_PROFILE_FOUND_TO_DELETE.printMessage(username);
     return;
   }
 }
