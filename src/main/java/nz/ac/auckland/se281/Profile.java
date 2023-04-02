@@ -1,10 +1,15 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+
 public class Profile {
 
   // instance fields
   private String username;
   private String age;
+
+  // policy arraylist
+  private ArrayList<Policy> policies = new ArrayList<Policy>();
 
   // profile constructor
   public Profile(String inputName, String inputAge) {
