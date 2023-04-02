@@ -75,4 +75,15 @@ public class Database {
   public int getProfilesNumber() {
     return profileDatabase.size();
   }
+
+  public void loadProfile(String user) {
+    for (Profile profile : profileDatabase) {
+      if (profile.getUsername().equals(user)) {
+        MessageCli.PROFILE_LOADED.printMessage(profile.getUsername());
+        return;
+      }
+    }
+    MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(user);
+    return;
+  }
 }

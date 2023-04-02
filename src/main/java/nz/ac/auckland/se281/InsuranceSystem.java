@@ -44,7 +44,12 @@ public class InsuranceSystem {
   }
 
   public void loadProfile(String userName) {
-    // TODO: Complete this method.
+    // convert username to desired punctuation
+    String upperUsername = userName.toUpperCase();
+    String fixedName =
+        upperUsername.charAt(0) + userName.substring(1, userName.length()).toLowerCase();
+
+    profileInfos.loadProfile(fixedName);
   }
 
   public void unloadProfile() {
