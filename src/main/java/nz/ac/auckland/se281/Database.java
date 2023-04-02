@@ -7,6 +7,10 @@ public class Database {
   // arraylist for storing profiles
   private ArrayList<Profile> profileDatabase = new ArrayList<Profile>();
 
+  // loaded profile status
+  private boolean loadedStatus = false;
+  private Profile loadedProfile = null;
+
   public Database() {
     profileDatabase = new ArrayList<Profile>();
   }
@@ -69,6 +73,9 @@ public class Database {
     String username = inputProfile.getUsername();
     String age = inputProfile.getAge();
     String indexString = Integer.toString(index + 1);
+    if (inputProfile == loadedProfile) {
+      System.out.print("***");
+    }
     MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(indexString, username, age);
   }
 
@@ -77,12 +84,18 @@ public class Database {
   }
 
   public void loadProfile(String user) {
+    // go through profiles in database to find matching username
     for (Profile profile : profileDatabase) {
       if (profile.getUsername().equals(user)) {
         MessageCli.PROFILE_LOADED.printMessage(profile.getUsername());
+        // once found, sets status of loaded to true and the current loaded profile to the matching
+        // username.
+        this.loadedStatus = true;
+        this.loadedProfile = profile;
         return;
       }
     }
+    // if no such profile can be found, send error message.
     MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(user);
     return;
   }
