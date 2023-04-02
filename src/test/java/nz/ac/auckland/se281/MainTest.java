@@ -13,7 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
   MainTest.Task1.class,
   MainTest.Task2.class, // Uncomment this line when to start Task 2
-  // MainTest.Task3.class, // Uncomment this line when to start Task 3
+  MainTest.Task3.class, // Uncomment this line when to start Task 3
   // MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
@@ -499,6 +499,12 @@ public class MainTest {
       assertContains(
           "'0.5' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Jordan.");
+    }
+
+    @Test
+    public void deleteWhileProfileLoaded() throws Exception {
+      runCommands(
+          unpack(CREATE_SOME_CLIENTS, LOAD_PROFILE, "jordan", DELETE_PROFILE, "jordan", PRINT_DB));
     }
   }
 
