@@ -11,6 +11,17 @@ public class Profile {
   // policy arraylist
   private ArrayList<Policy> policies = new ArrayList<Policy>();
 
+  // returns amount of policies
+  public int getPolicyAmount() {
+    return policies.size();
+  }
+
+  // adds new policy for profile
+  public void addPolicy(Policy policyToAdd) {
+    policies.add(policyToAdd);
+    return;
+  }
+
   // profile constructor
   public Profile(String inputName, String inputAge) {
     this.username = inputName;
