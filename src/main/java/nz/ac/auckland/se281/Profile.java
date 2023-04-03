@@ -16,6 +16,20 @@ public class Profile {
     return policies.size();
   }
 
+  // returns policy of specific index
+  public Policy getPolicy(int index) {
+    return policies.get(index);
+  }
+
+  // calculates total cost of policies
+  public int getTotalCost() {
+    int cost = 0;
+    for (Policy policy : policies) {
+      cost += policy.getDiscountedBasePremium();
+    }
+    return cost;
+  }
+
   // checks if profile already has life policy
   public boolean lifeInsured() {
     boolean insured = false;

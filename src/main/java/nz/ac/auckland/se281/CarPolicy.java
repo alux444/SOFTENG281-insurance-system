@@ -28,24 +28,35 @@ public class CarPolicy extends Policy {
   @Override
   public int getBasePremium() {
     // calcaultes base premium off owners age and if breakdown warranty is applied.
-
-    // discounts for if owner has multiple policies.
-    double discount = this.calculateDiscount();
-
     int ownerAge = Integer.parseInt((this.getOwner()).getAge());
     int breakdownFee = 0;
     if (breakdown == true) {
       breakdownFee = 80;
     }
     if (ownerAge < 25) {
-      return (int) discount * ((this.getSumInsured() * 15 / 100) + breakdownFee);
+      return (int) (this.getSumInsured() * 15 / 100) + breakdownFee;
     } else {
-      return (int) discount * ((this.getSumInsured() / 10) + breakdownFee);
+      return (int) (this.getSumInsured() / 10) + breakdownFee;
     }
+  }
+
+  @Override
+  public int getDiscountedBasePremium() {
+    double discount = this.calculateDiscount();
+    return (int) (this.getBasePremium() * discount);
   }
 
   @Override
   public String getType() {
     return "car";
+  }
+
+  @Override
+  public void printPolicy() {
+    MessageCli.PRINT_DB_CAR_POLICY.printMessage(
+        this.makeAndModel,
+        Integer.toString(this.getSumInsured()),
+        Integer.toString(this.getBasePremium()),
+        Integer.toString(this.getDiscountedBasePremium()));
   }
 }

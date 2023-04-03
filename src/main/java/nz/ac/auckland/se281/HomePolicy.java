@@ -30,7 +30,22 @@ public class HomePolicy extends Policy {
   }
 
   @Override
+  public int getDiscountedBasePremium() {
+    double discount = this.calculateDiscount();
+    return (int) (this.getBasePremium() * discount);
+  }
+
+  @Override
   public String getType() {
     return "home";
+  }
+
+  @Override
+  public void printPolicy() {
+    MessageCli.PRINT_DB_HOME_POLICY.printMessage(
+        this.address,
+        Integer.toString(this.getSumInsured()),
+        Integer.toString(this.getBasePremium()),
+        Integer.toString(this.getDiscountedBasePremium()));
   }
 }

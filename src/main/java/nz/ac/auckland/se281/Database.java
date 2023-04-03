@@ -75,10 +75,6 @@ public class Database {
 
   // prints the information of a profile at a certain index of the database.
   public void printProfileInfo(Profile inputProfile, int index) {
-    String username = inputProfile.getUsername();
-    String age = inputProfile.getAge();
-    String indexString = Integer.toString(index + 1);
-    String policies = Integer.toString(inputProfile.getPolicyAmount());
     String plural = "ies";
     if (inputProfile.getPolicyAmount() == 1) {
       plural = "y";
@@ -87,8 +83,17 @@ public class Database {
     if (inputProfile == loadedProfile) {
       System.out.print("***");
     }
-    MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
-        indexString, "", username, age, policies, plural);
+    MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+        Integer.toString(index + 1),
+        "",
+        inputProfile.getUsername(),
+        inputProfile.getAge(),
+        Integer.toString(inputProfile.getPolicyAmount()),
+        plural,
+        Integer.toString(inputProfile.getTotalCost()));
+    for (int i = 0; i < inputProfile.getPolicyAmount(); i++) {
+      inputProfile.getPolicy(i).printPolicy();
+    }
   }
 
   public int getProfilesNumber() {
