@@ -119,6 +119,10 @@ public class Database {
     return;
   }
 
+  public Profile getLoadedProfile() {
+    return loadedProfile;
+  }
+
   public void deleteProfile(String username) {
     // searches for profile with matching username
     for (Profile profile : profileDatabase) {

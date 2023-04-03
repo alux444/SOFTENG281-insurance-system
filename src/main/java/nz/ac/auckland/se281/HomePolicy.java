@@ -6,10 +6,14 @@ public class HomePolicy extends Policy {
   private String address;
   private boolean rental;
 
-  public HomePolicy(Profile policyOwner, int sumInsured, String address, boolean rental) {
-    super(sumInsured, Policy.PolicyType.POLICY_HOME, policyOwner);
+  public HomePolicy(Profile policyOwner, String sumInsured, String address, String rental) {
+    super(Integer.parseInt(sumInsured), Policy.PolicyType.POLICY_HOME, policyOwner);
     this.address = address;
-    this.rental = rental;
+    if (rental == "yes") {
+      this.rental = true;
+    } else {
+      this.rental = false;
+    }
   }
 
   @Override

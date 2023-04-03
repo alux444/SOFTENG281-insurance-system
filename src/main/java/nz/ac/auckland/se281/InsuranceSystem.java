@@ -66,6 +66,10 @@ public class InsuranceSystem {
   }
 
   public void createPolicy(PolicyType type, String[] options) {
-    // TODO: Complete this method.
+    if (type == PolicyType.CAR) {
+      CarPolicy newCarPolicy =
+          new CarPolicy(
+              profileInfos.getLoadedProfile(), options[0], options[1], options[2], options[3]);
+    }
   }
 }

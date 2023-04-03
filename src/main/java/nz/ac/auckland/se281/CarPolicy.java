@@ -8,14 +8,19 @@ public class CarPolicy extends Policy {
 
   public CarPolicy(
       Profile policyOwner,
-      int sumInsured,
+      String sumInsured,
       String makeAndModel,
       String licensePlate,
-      boolean breakdown) {
-    super(sumInsured, Policy.PolicyType.POLICY_CAR, policyOwner);
+      String breakdown) {
+    super(Integer.parseInt(sumInsured), Policy.PolicyType.POLICY_CAR, policyOwner);
     this.makeAndModel = makeAndModel;
     this.licensePlate = licensePlate;
-    this.breakdown = breakdown;
+    String warranty = breakdown.toUpperCase();
+    if (warranty == "YES" || warranty == "Y") {
+      this.breakdown = true;
+    } else {
+      this.breakdown = false;
+    }
   }
 
   @Override
