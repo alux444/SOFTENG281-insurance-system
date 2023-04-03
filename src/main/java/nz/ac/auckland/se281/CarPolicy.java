@@ -17,10 +17,9 @@ public class CarPolicy extends Policy {
     this.makeAndModel = makeAndModel;
     this.licensePlate = licensePlate;
     String warranty = breakdown.toUpperCase();
-    if (warranty == "YES" || warranty == "Y") {
+    this.breakdown = false;
+    if (warranty.equals("YES") || warranty.equals("Y")) {
       this.breakdown = true;
-    } else {
-      this.breakdown = false;
     }
     policyOwner.addPolicy(this);
   }
