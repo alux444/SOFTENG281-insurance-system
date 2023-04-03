@@ -22,6 +22,7 @@ public class CarPolicy extends Policy {
     } else {
       this.breakdown = false;
     }
+    policyOwner.addPolicy(this);
   }
 
   @Override
@@ -29,12 +30,8 @@ public class CarPolicy extends Policy {
     // calcaultes base premium off owners age and if breakdown warranty is applied.
 
     // discounts for if owner has multiple policies.
-    double discount = 1;
-    if (this.getOwner().getPolicyAmount() == 2) {
-      discount = 0.9;
-    } else if (this.getOwner().getPolicyAmount() > 2) {
-      discount = 0.8;
-    }
+    double discount = this.calculateDiscount();
+
     int ownerAge = Integer.parseInt((this.getOwner()).getAge());
     int breakdownFee = 0;
     if (breakdown == true) {
@@ -45,5 +42,10 @@ public class CarPolicy extends Policy {
     } else {
       return (int) discount * ((this.getSumInsured() / 10) + breakdownFee);
     }
+  }
+
+  @Override
+  public String getType() {
+    return "car";
   }
 }

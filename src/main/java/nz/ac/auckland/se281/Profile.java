@@ -16,9 +16,21 @@ public class Profile {
     return policies.size();
   }
 
+  // checks if profile already has life policy
+  public boolean lifeInsured() {
+    boolean insured = false;
+    for (Policy policy : policies) {
+      if (policy.getType() == "life") {
+        insured = true;
+      }
+    }
+    return insured;
+  }
+
   // adds new policy for profile
   public void addPolicy(Policy policyToAdd) {
     policies.add(policyToAdd);
+    MessageCli.NEW_POLICY_CREATED.printMessage(policyToAdd.getType(), this.username);
     return;
   }
 

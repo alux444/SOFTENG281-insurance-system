@@ -20,6 +20,8 @@ public abstract class Policy {
     this.policyOwner = policyOwner;
   }
 
+  // calculates discount based on amount of policies :
+  // 10% for 2 policies, 20% for 3+
   public double calculateDiscount() {
     double discount = 1;
     if (this.getOwner().getPolicyAmount() == 2) {
@@ -27,19 +29,28 @@ public abstract class Policy {
     } else if (this.getOwner().getPolicyAmount() > 2) {
       discount = 0.8;
     }
+    return discount;
   }
 
+  // returns the policy owner
   public Profile getOwner() {
     return this.policyOwner;
   }
 
-  public PolicyType getType() {
-    return this.policyType;
-  }
+  // returns the type of policy (abstract method)
+  public abstract String getType();
 
+  // returns the sum insured.
   public int getSumInsured() {
     return this.sumInsured;
   }
 
+  // abstract method of returning base premium (no discount)
   public abstract int getBasePremium();
+
+  // abstract method of returning any discounts for base premium
+  public abstract int getDiscountedBasePremium();
+
+  // abstract method of printing policy info
+  public abstract void printPolicy();
 }

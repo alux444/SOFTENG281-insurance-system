@@ -15,6 +15,7 @@ public class HomePolicy extends Policy {
     } else {
       this.rental = false;
     }
+    policyOwner.addPolicy(this);
   }
 
   @Override
@@ -26,5 +27,10 @@ public class HomePolicy extends Policy {
     } else {
       return (int) discount * (this.getSumInsured() / 100);
     }
+  }
+
+  @Override
+  public String getType() {
+    return "home";
   }
 }

@@ -78,11 +78,17 @@ public class Database {
     String username = inputProfile.getUsername();
     String age = inputProfile.getAge();
     String indexString = Integer.toString(index + 1);
+    String policies = Integer.toString(inputProfile.getPolicyAmount());
+    String plural = "ies";
+    if (inputProfile.getPolicyAmount() == 1) {
+      plural = "y";
+    }
     // if the current profile is the loaded profile, print *** before the profile information.
     if (inputProfile == loadedProfile) {
       System.out.print("***");
     }
-    MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(indexString, username, age);
+    MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+        indexString, "", username, age, policies, plural);
   }
 
   public int getProfilesNumber() {
