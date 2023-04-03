@@ -20,6 +20,15 @@ public abstract class Policy {
     this.policyOwner = policyOwner;
   }
 
+  public double calculateDiscount() {
+    double discount = 1;
+    if (this.getOwner().getPolicyAmount() == 2) {
+      discount = 0.9;
+    } else if (this.getOwner().getPolicyAmount() > 2) {
+      discount = 0.8;
+    }
+  }
+
   public Profile getOwner() {
     return this.policyOwner;
   }

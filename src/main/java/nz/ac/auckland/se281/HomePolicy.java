@@ -9,7 +9,8 @@ public class HomePolicy extends Policy {
   public HomePolicy(Profile policyOwner, String sumInsured, String address, String rental) {
     super(Integer.parseInt(sumInsured), Policy.PolicyType.POLICY_HOME, policyOwner);
     this.address = address;
-    if (rental == "yes") {
+    String isRental = rental.toUpperCase();
+    if (isRental == "YES" || isRental == "Y") {
       this.rental = true;
     } else {
       this.rental = false;
@@ -18,10 +19,12 @@ public class HomePolicy extends Policy {
 
   @Override
   public int getBasePremium() {
+    // calculates base premium off rates based on if home is a rental
+    double discount = this.calculateDiscount();
     if (this.rental == true) {
-      return this.getSumInsured() / 50;
+      return (int) discount * (this.getSumInsured() / 50);
     } else {
-      return this.getSumInsured() / 100;
+      return (int) discount * (this.getSumInsured() / 100);
     }
   }
 }

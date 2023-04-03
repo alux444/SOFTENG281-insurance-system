@@ -6,6 +6,7 @@ public class CarPolicy extends Policy {
   private String licensePlate;
   private boolean breakdown;
 
+  // car policy constructor - takes specific car policy variables and sets them.
   public CarPolicy(
       Profile policyOwner,
       String sumInsured,
@@ -25,15 +26,24 @@ public class CarPolicy extends Policy {
 
   @Override
   public int getBasePremium() {
+    // calcaultes base premium off owners age and if breakdown warranty is applied.
+
+    // discounts for if owner has multiple policies.
+    double discount = 1;
+    if (this.getOwner().getPolicyAmount() == 2) {
+      discount = 0.9;
+    } else if (this.getOwner().getPolicyAmount() > 2) {
+      discount = 0.8;
+    }
     int ownerAge = Integer.parseInt((this.getOwner()).getAge());
     int breakdownFee = 0;
     if (breakdown == true) {
       breakdownFee = 80;
     }
     if (ownerAge < 25) {
-      return (this.getSumInsured() * 15 / 100) + breakdownFee;
+      return (int) discount * ((this.getSumInsured() * 15 / 100) + breakdownFee);
     } else {
-      return (this.getSumInsured() / 10) + breakdownFee;
+      return (int) discount * ((this.getSumInsured() / 10) + breakdownFee);
     }
   }
 }
