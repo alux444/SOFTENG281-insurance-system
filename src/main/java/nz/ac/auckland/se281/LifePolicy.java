@@ -11,14 +11,16 @@ public class LifePolicy extends Policy {
   public int getBasePremium() {
     // calculates base premium by using owner age.
     int ownerAge = Integer.parseInt((this.getOwner()).getAge());
-    double percentToCalculate = 1 + ((double) ownerAge / 100);
-    return (int) ((percentToCalculate / 100) * (this.getSumInsured()));
+    int percentToCalculate = (int) (100 * (1 + (((double) ownerAge) / 100)));
+    int basePrem = ((percentToCalculate) * this.getSumInsured() / (100 * 100));
+    return basePrem;
   }
 
   @Override
   public int getDiscountedBasePremium() {
     double discount = this.calculateDiscount();
-    return (int) (this.getBasePremium() * discount);
+    double discBasePrem = (double) this.getBasePremium() * discount;
+    return (int) discBasePrem;
   }
 
   @Override
