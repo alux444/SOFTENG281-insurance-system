@@ -81,7 +81,7 @@ public class Database {
     }
     // if the current profile is the loaded profile, print *** before the profile information.
     if (inputProfile == loadedProfile) {
-      System.out.print("***");
+      System.out.print(" ***");
     }
     MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
         Integer.toString(index + 1),
